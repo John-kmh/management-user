@@ -1,0 +1,15 @@
+<div class="d-flex" style="min-height: 100vh">
+  <!-- Side Navigation -->
+  <app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <div class="flex-grow-1">
+    <!-- Header -->
+    <app-header-bar (toggleSidebar)="toggleSidebar()"></app-header-bar>
+
+    <!-- Page Content -->
+    <main class="p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

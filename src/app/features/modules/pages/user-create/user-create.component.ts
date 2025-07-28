@@ -8,12 +8,12 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-user',
+  selector: 'app-user-create',
   imports: [ReactiveFormsModule],
-  templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.css',
+  templateUrl: './user-create.component.html',
+  styleUrl: './user-create.component.css',
 })
-export class AddUserComponent {
+export class UserCreateComponent {
   userForm: FormGroup;
   showValidationErrors = signal(false);
 

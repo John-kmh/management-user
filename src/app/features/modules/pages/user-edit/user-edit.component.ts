@@ -8,12 +8,12 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-user',
+  selector: 'app-user-edit',
   imports: [ReactiveFormsModule],
-  templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.css',
+  templateUrl: './user-edit.component.html',
+  styleUrl: './user-edit.component.css',
 })
-export class EditUserComponent {
+export class UserEditComponent {
   userEditForm: FormGroup;
   showValidationErrors = signal(false);
 

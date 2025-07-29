@@ -24,9 +24,14 @@ export class ApiService {
    * Performs a POST request.
    * @param path The endpoint path.
    * @param body The request payload.
+   * @param options Optional HTTP options.
    */
-  post<T>(path: string, body: object = {}): Observable<T> {
-    return this.http.post<T>(`${this.apiUrl}${path}`, body);
+  post<T>(
+    path: string,
+    body: object = {},
+    options: object = {}
+  ): Observable<T> {
+    return this.http.post<T>(`${this.apiUrl}${path}`, body, options);
   }
 
   /**

@@ -1,5 +1,51 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpErrorResponse,
+  HttpInterceptor,
+} from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { Observable, switchMap, take, catchError, throwError } from 'rxjs';
+import { selectAuthToken } from '../../features/auth/state/auth.selectors';
+import { Router } from '@angular/router';
+import { AuthActions } from '../../features/auth/state/auth.actions';
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  return next(req);
-};
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  private store = inject(Store);
+  private router = inject(Router);
+
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return this.store.select(selectAuthToken).pipe(
+      take(1),
+      switchMap((token) => {
+        let clonedReq = req;
+        if (token) {
+          clonedReq = req.clone({
+            setHeaders: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        }
+
+        // Handle the request and catch errors
+        return next.handle(clonedReq).pipe(
+          catchError((error: HttpErrorResponse) => {
+            // If the error is 401 (Unauthorized), log out and redirect
+            if (error.status === 401) {
+              this.store.dispatch(AuthActions.logout());
+              this.router.navigate(['/auth/login']);
+            }
+            // Re-throw the error for other handlers
+            return throwError(() => error);
+          })
+        );
+      })
+    );
+  }
+}

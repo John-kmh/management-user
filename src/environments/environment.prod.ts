@@ -1,5 +1,5 @@
 export const environment = {
-     /**
+  /**
    * Identifies that this IS a production build.
    */
   production: true,
@@ -7,7 +7,8 @@ export const environment = {
   /**
    * The base URL for your live production API.
    */
-  apiUrl: 'https://api.your-app.com/v1',
+  //  apiUrl: 'https://users-ms.vnapp.xyz/api',
+  apiUrl: 'http:your-api.com',
 
   /**
    * The level of detail for logging in production (usually less verbose).

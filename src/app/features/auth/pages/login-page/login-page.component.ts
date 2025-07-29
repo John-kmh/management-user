@@ -28,8 +28,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private store: Store) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      EmailId: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
 
     this.loading$ = this.store.select(selectAuthLoading);

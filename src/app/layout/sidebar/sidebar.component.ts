@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule,RouterLinkActive],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })

@@ -24,22 +24,22 @@
           <input
             type="email"
             class="form-control"
-            formControlName="EmailId"
+            formControlName="email"
             placeholder="superadmin@example.com"
             [class.is-invalid]="
-              loginForm.get('EmailId')?.invalid &&
-              (loginForm.get('EmailId')?.touched || showValidationErrors())
+              loginForm.get('email')?.invalid &&
+              (loginForm.get('email')?.touched || showValidationErrors())
             "
           />
-          @if (loginForm.get('EmailId')?.invalid &&
-          (loginForm.get('EmailId')?.touched || showValidationErrors())) {
+          @if (loginForm.get('email')?.invalid &&
+          (loginForm.get('email')?.touched || showValidationErrors())) {
           <div
             class="invalid-feedback position-absolute"
             style="top: 100%; left: 0"
           >
-            @if (loginForm.get('EmailId')?.errors?.['required']) {
+            @if (loginForm.get('email')?.errors?.['required']) {
             <div>Email is required</div>
-            } @if (loginForm.get('EmailId')?.errors?.['email']) {
+            } @if (loginForm.get('email')?.errors?.['email']) {
             <div
               class="invalid-feedback position-absolute"
               style="top: 100%; left: 0"
@@ -64,20 +64,20 @@
           <input
             [type]="showPassword ? 'text' : 'password'"
             class="form-control"
-            formControlName="Password"
+            formControlName="password"
             placeholder="test123"
             [class.is-invalid]="
-              loginForm.get('Password')?.invalid &&
-              (loginForm.get('Password')?.touched || showValidationErrors())
+              loginForm.get('password')?.invalid &&
+              (loginForm.get('password')?.touched || showValidationErrors())
             "
           />
-          @if ( loginForm.get('Password')?.invalid &&
-          (loginForm.get('Password')?.touched || showValidationErrors()) ) {
+          @if ( loginForm.get('password')?.invalid &&
+          (loginForm.get('password')?.touched || showValidationErrors()) ) {
           <div
             class="invalid-feedback position-absolute"
             style="top: 100%; left: 0"
           >
-            @if (loginForm.get('Password')?.errors?.['required']) {
+            @if (loginForm.get('password')?.errors?.['required']) {
             <div>Password is required</div>
             }
           </div>

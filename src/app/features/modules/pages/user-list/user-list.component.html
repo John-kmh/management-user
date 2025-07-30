@@ -1,34 +1,55 @@
-<div class="table-responsive">
-  <table class="table table-bordered align-middle">
-    <thead class="table-light">
-      <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center gap-2">
-            <img src="https://github.com/shadcn.png" alt="Avatar" class="rounded-circle" width="32" height="32" />
-            <span>shadcn</span>
-          </div>
-        </td>
-        <td>Admin</td>
-        <td><span class="badge bg-success">Active</span></td>
-        <td>2023-01-01</td>
-        <td>
-          <button class="btn btn-sm btn-outline-secondary me-1">
-            <i class="bi bi-pencil"></i>
-          </button>
-          <button class="btn btn-sm btn-outline-danger">
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid bg-white rounded shadow-sm p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h5 class="mb-1">Users</h5>
+      <small class="text-muted">Manage your users</small>
+    </div>
+    <button class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i> Add User
+    </button>
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Search users..." />
+  </div>
+  <div class="table-responsive">
+    <div class="card overflow-hidden">
+      <table class="table table-bordered table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div
+                  class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center"
+                  style="width: 32px; height: 32px"
+                >
+                  <i class="bi bi-person-fill"></i>
+                </div>
+                <span>Htun Htun Min</span>
+              </div>
+            </td>
+            <td><span class="badge bg-secondary">Admin</span></td>
+            <td><span class="badge bg-success">Active</span></td>
+            <td>2023-01-01</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

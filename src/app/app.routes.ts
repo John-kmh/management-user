@@ -8,10 +8,10 @@ export const routes: Routes = [
       import('./features/auth/auth-routes').then((m) => m.AUTH_ROUTES),
   },
   {
-    path: 'home',
+    path: 'module',
     loadChildren: () =>
       import('./features/modules/module-routes').then((m) => m.MODULE_ROUTES),
-    // canActivate: [authGuard], // protect home route with the authGuard
+    // canActivate: [authGuard], // protect module route with the authGuard
   },
 
   // Default redirect

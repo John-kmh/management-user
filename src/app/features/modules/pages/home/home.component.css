@@ -1,0 +1,13 @@
+.custom-widget {
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: all 0.1s ease-in-out;
+  color: #333;
+}
+
+.custom-widget:hover {
+  background-color: #e9f3ff;
+  color: #0d6efd;
+  border-left: 4px solid #0d6efd;
+  text-decoration: none;
+}

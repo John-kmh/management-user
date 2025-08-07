@@ -8,8 +8,8 @@ export const environment = {
    * The base URL for your development or staging API.
    */
   // apiUrl: 'http://localhost:3000/api',
-  apiUrl: 'https://users-ms.vnapp.xyz/api',
-
+  baseUrl: 'https://users-ms.vnapp.xyz/api',
+  apiUrl: 'https://client-info-be.vnapp.xyz/api',
   /**
    * The level of detail for logging in development.
    */

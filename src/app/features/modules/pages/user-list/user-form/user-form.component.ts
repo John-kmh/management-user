@@ -1,20 +1,14 @@
 import { Component, signal } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-create',
+  selector: 'app-user-form',
   imports: [ReactiveFormsModule],
-  templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.css',
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.css'
 })
-export class UserCreateComponent {
-  userForm: FormGroup;
+export class UserFormComponent {
+ userForm: FormGroup;
   showValidationErrors = signal(false);
 
   constructor(private fb: FormBuilder) {

@@ -13,7 +13,7 @@
       <small class="text-muted">Sign in to access the dashboard</small>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Email -->
       <div class="mb-4 position-relative">
         <label class="form-label">Email</label>
@@ -25,7 +25,7 @@
             type="email"
             class="form-control"
             formControlName="email"
-            placeholder="Enter your email"  
+            placeholder="Enter your email"
             [class.is-invalid]="
               loginForm.get('email')?.invalid &&
               (loginForm.get('email')?.touched || showValidationErrors())
@@ -102,7 +102,21 @@
       </div>
 
       <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="loading$ | async"
+        >
+          <span *ngIf="loading$ | async; else loginText">
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Logging in...
+          </span>
+          <ng-template #loginText>Log in</ng-template>
+        </button>
       </div>
     </form>
   </div>

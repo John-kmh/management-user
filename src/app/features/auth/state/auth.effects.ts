@@ -46,7 +46,7 @@ export class AuthEffects {
         ofType(AuthActions.loginSuccess),
         tap(({ authResponse }) => {
           localStorage.setItem('access_token', authResponse.access_token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/module']);
         })
       ),
     { dispatch: false }

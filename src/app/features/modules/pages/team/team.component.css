@@ -1,0 +1,5 @@
+/* Hover-enabled dropdown */
+.hover-dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* optional: remove offset */
+}

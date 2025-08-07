@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
+  NgModule,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -21,6 +22,10 @@ import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './features/auth/state/auth.effects';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { userReducer } from './features/modules/pages/user-list/state/user.reducer';
+import { UserEffects } from './features/modules/pages/user-list/state/user.effect';
+import { teamReducer } from './features/modules/pages/team/store/team.reducers';
+import { TeamEffects } from './features/modules/pages/team/store/team.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -47,8 +52,10 @@ export const appConfig: ApplicationConfig = {
     // Ngrnx
     provideStore({
       auth: authReducer,
+      users: userReducer,
+      teams: teamReducer,
     }),
-    provideEffects([AuthEffects]),
+    provideEffects([AuthEffects, UserEffects, TeamEffects]),
 
     // toastr
     // importProvidersFrom(
@@ -58,5 +65,6 @@ export const appConfig: ApplicationConfig = {
     //     preventDuplicates: true,
     //   })
     // ),
+    importProvidersFrom(NgModule),
   ],
 };

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
@@ -14,7 +14,7 @@ import { selectAuthLoading } from '../../state/auth.selectors';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, AsyncPipe],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
 })

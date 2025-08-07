@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isEdit ? "Edit Team" : "Create Team" }}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="onCancel()"
+    aria-label="Close"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Team Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        [class.is-invalid]="
+          teamForm.get('name')?.invalid && teamForm.get('name')?.touched
+        "
+      />
+      @if (teamForm.get('name')?.invalid && teamForm.get('name')?.touched) {
+      <div class="invalid-feedback">
+        @if (teamForm.get('name')?.errors?.['required']) {
+        <div>Name is required</div>
+        } @if (teamForm.get('name')?.errors?.['minlength']) {
+        <div>Minimum 2 characters required</div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        formControlName="description"
+        rows="3"
+        [class.is-invalid]="
+          teamForm.get('description')?.invalid &&
+          teamForm.get('description')?.touched
+        "
+      ></textarea>
+      @if (teamForm.get('description')?.invalid &&
+      teamForm.get('description')?.touched) {
+      <div class="invalid-feedback">
+        @if (teamForm.get('description')?.errors?.['required']) {
+        <div>Description is required</div>
+        } @if (teamForm.get('description')?.errors?.['minlength']) {
+        <div>Minimum 5 characters required</div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="teamForm.invalid"
+      >
+        {{ isEdit ? "Update" : "Create" }}
+      </button>
+    </div>
+  </form>
+</div>

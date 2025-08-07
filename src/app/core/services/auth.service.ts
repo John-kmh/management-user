@@ -27,28 +27,36 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
- login(
-  credentials: {
+  //  login(
+  //   credentials: {
+  //     email: string;
+  //     password: string;
+  //   }
+  // ): Observable<AuthResponse> {
+  //   const body = new HttpParams()
+  //     .set('username', credentials.email)
+  //     .set('password', credentials.password)
+  //     .set('grant_type', 'password')
+  //     .set('client_id', '0197d55c-7338-7249-b9ca-6be67b78b007')
+  //     .set('client_secret', '3B17cBmoTaGdeGqTxFQXb96OplIEm0jfAMicuxtR');
+
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //   });
+
+  //   return this.http
+  //     .post<AuthResponse>(`${this.apiUrl}/oauth/token`, body, { headers })
+  //     .pipe(tap((response) => this.setSession(response)));
+  // }
+
+  login(credentials: {
     email: string;
     password: string;
+  }): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(`${this.apiUrl}/login`, credentials)
+      .pipe(tap((response) => this.setSession(response)));
   }
-): Observable<AuthResponse> {
-  const body = new HttpParams()
-    .set('username', credentials.email)
-    .set('password', credentials.password)
-    .set('grant_type', 'password')
-    .set('client_id', '0197d55c-7338-7249-b9ca-6be67b78b007')
-    .set('client_secret', '3B17cBmoTaGdeGqTxFQXb96OplIEm0jfAMicuxtR');
-
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/x-www-form-urlencoded',
-  });
-
-  return this.http
-    .post<AuthResponse>(`${this.apiUrl}/oauth/token`, body, { headers })
-    .pipe(tap((response) => this.setSession(response)));
-}
-
 
   logout(): void {
     localStorage.removeItem(SESSION_KEY);

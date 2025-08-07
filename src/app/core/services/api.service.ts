@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly apiUrl = environment.apiUrl;
+  private readonly baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class ApiService {
    * @param params Optional HTTP parameters.
    */
   get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
-    return this.http.get<T>(`${this.apiUrl}${path}`, { params });
+    return this.http.get<T>(`${this.baseUrl}${path}`, { params });
   }
 
   /**
@@ -31,7 +31,7 @@ export class ApiService {
     body: object = {},
     options: object = {}
   ): Observable<T> {
-    return this.http.post<T>(`${this.apiUrl}${path}`, body, options);
+    return this.http.post<T>(`${this.baseUrl}${path}`, body, options);
   }
 
   /**
@@ -40,7 +40,7 @@ export class ApiService {
    * @param body The request payload.
    */
   put<T>(path: string, body: object = {}): Observable<T> {
-    return this.http.put<T>(`${this.apiUrl}${path}`, body);
+    return this.http.put<T>(`${this.baseUrl}${path}`, body);
   }
 
   /**
@@ -48,6 +48,6 @@ export class ApiService {
    * @param path The endpoint path.
    */
   delete<T>(path: string): Observable<T> {
-    return this.http.delete<T>(`${this.apiUrl}${path}`);
+    return this.http.delete<T>(`${this.baseUrl}${path}`);
   }
 }

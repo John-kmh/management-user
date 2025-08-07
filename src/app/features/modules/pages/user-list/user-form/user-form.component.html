@@ -1,0 +1,240 @@
+
+  <div class="container">
+    <h2>Add New User</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <!-- Name Field -->
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            [class.is-invalid]="
+              userForm.get('name')?.invalid &&
+              (userForm.get('name')?.touched || showValidationErrors())
+            "
+            placeholder="Enter full name"
+            formControlName="name"
+          />
+          @if (userForm.get('name')?.invalid && (userForm.get('name')?.touched
+          || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('name')?.errors?.['required']) {
+            <div>Name is required</div>
+            } @if (userForm.get('name')?.errors?.['minlength']) {
+            <div>Name must be at least 3 characters</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Username Field -->
+        <div class="col-md-6">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            [class.is-invalid]="
+              userForm.get('username')?.invalid &&
+              (userForm.get('username')?.touched || showValidationErrors())
+            "
+            placeholder="Enter username"
+            formControlName="username"
+          />
+          @if (userForm.get('username')?.invalid &&
+          (userForm.get('username')?.touched || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('username')?.errors?.['required']) {
+            <div>Username is required</div>
+            } @if (userForm.get('username')?.errors?.['pattern']) {
+            <div>4-20 characters, letters, numbers and underscores only</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Email Field -->
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [class.is-invalid]="
+              userForm.get('email')?.invalid &&
+              (userForm.get('email')?.touched || showValidationErrors())
+            "
+            placeholder="Enter email address"
+            formControlName="email"
+          />
+          @if (userForm.get('email')?.invalid && (userForm.get('email')?.touched
+          || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('email')?.errors?.['required']) {
+            <div>Email is required</div>
+            } @if (userForm.get('email')?.errors?.['email']) {
+            <div>Please enter a valid email address</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Phone Field -->
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            class="form-control"
+            [class.is-invalid]="
+              userForm.get('phone')?.invalid &&
+              (userForm.get('phone')?.touched || showValidationErrors())
+            "
+            placeholder="Enter phone number"
+            formControlName="phone"
+          />
+          @if (userForm.get('phone')?.invalid && (userForm.get('phone')?.touched
+          || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('phone')?.errors?.['required']) {
+            <div>Phone number is required</div>
+            } @if (userForm.get('phone')?.errors?.['pattern']) {
+            <div>10-15 digits only</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Address Field -->
+        <div class="col-12">
+          <label for="address" class="form-label">Address</label>
+          <textarea
+            id="address"
+            class="form-control"
+            [class.is-invalid]="
+              userForm.get('address')?.invalid &&
+              (userForm.get('address')?.touched || showValidationErrors())
+            "
+            rows="2"
+            placeholder="Enter address"
+            formControlName="address"
+          ></textarea>
+          @if (userForm.get('address')?.invalid &&
+          (userForm.get('address')?.touched || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('address')?.errors?.['required']) {
+            <div>Address is required</div>
+            } @if (userForm.get('address')?.errors?.['minlength']) {
+            <div>Address must be at least 10 characters</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Role Select Box -->
+        <div class="col-md-6">
+          <label for="role" class="form-label">Role</label>
+          <select
+            id="role"
+            class="form-select"
+            [class.is-invalid]="
+              userForm.get('role')?.invalid &&
+              (userForm.get('role')?.touched || showValidationErrors())
+            "
+            formControlName="role"
+          >
+            <option selected disabled value="">Choose a role</option>
+            <option>Admin</option>
+            <option>Editor</option>
+            <option>Viewer</option>
+          </select>
+          @if (userForm.get('role')?.invalid && (userForm.get('role')?.touched
+          || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('role')?.errors?.['required']) {
+            <div>Please select a role</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Team Select Box -->
+        <div class="col-md-6">
+          <label for="team" class="form-label">Team</label>
+          <select
+            id="team"
+            class="form-select"
+            [class.is-invalid]="
+              userForm.get('team')?.invalid &&
+              (userForm.get('team')?.touched || showValidationErrors())
+            "
+            formControlName="team"
+          >
+            <option selected disabled value="">Choose a team</option>
+            <option>Engineering</option>
+            <option>Marketing</option>
+            <option>Sales</option>
+          </select>
+          @if (userForm.get('team')?.invalid && (userForm.get('team')?.touched
+          || showValidationErrors())) {
+          <div class="invalid-feedback">
+            @if (userForm.get('team')?.errors?.['required']) {
+            <div>Please select a team</div>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Permissions Checkboxes -->
+        <div class="col-12">
+          <label class="form-label">Permissions</label>
+          <div formGroupName="permissions">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="permRead"
+                formControlName="read"
+              />
+              <label class="form-check-label" for="permRead">Read</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="permWrite"
+                formControlName="write"
+              />
+              <label class="form-check-label" for="permWrite">Write</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="permDelete"
+                formControlName="delete"
+              />
+              <label class="form-check-label" for="permDelete">Delete</label>
+            </div>
+          </div>
+          @if (userForm.get('permissions')?.invalid &&
+          (userForm.get('permissions')?.touched || showValidationErrors())) {
+          <div class="text-danger">
+            @if (userForm.get('permissions')?.errors?.['atLeastOneRequired']) {
+            <div>At least one permission must be selected</div>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-primary me-3">Add User</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>

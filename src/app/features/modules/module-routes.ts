@@ -24,20 +24,6 @@ export const MODULE_ROUTES: Routes = [
           ),
       },
       {
-        path: 'user-create',
-        loadComponent: () =>
-          import('./pages/user-create/user-create.component').then(
-            (m) => m.UserCreateComponent
-          ),
-      },
-      {
-        path: 'user-edit',
-        loadComponent: () =>
-          import('./pages/user-edit/user-edit.component').then(
-            (m) => m.UserEditComponent
-          ),
-      },
-      {
         path: 'role',
         loadComponent: () =>
           import('./pages/role/role.component').then((m) => m.RoleComponent),

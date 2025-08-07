@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of, startWith, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Team } from '../../models/team.model';
 import { TeamFormComponent } from './team-form/team-form.component';
 import { loadTeams } from './store/team.actions';
@@ -52,4 +52,5 @@ export class TeamComponent implements OnInit {
       () => console.log('Modal dismissed')
     );
   }
+  
 }

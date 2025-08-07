@@ -72,14 +72,29 @@ export class AuthEffects {
     return of(AuthActions.logout());
   });
 
+  // logout$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(AuthActions.logout),
+  //       tap(() => {
+  //         this.authService.logout();
+  //         this.router.navigate(['auth/login']);
+  //       })
+  //     ),
+  //   { dispatch: false }
+  // );
+
   logout$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
-        tap(() => {
-          this.authService.logout();
-          this.router.navigate(['auth/login']);
-        })
+        exhaustMap(() =>
+          this.authService.logout().pipe(
+            tap(() => {
+              this.router.navigate(['auth/login']);
+            })
+          )
+        )
       ),
     { dispatch: false }
   );

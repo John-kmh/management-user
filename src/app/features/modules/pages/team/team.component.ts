@@ -47,10 +47,15 @@ export class TeamComponent implements OnInit {
     modalRef.componentInstance.team = team;
     modalRef.componentInstance.isEdit = Boolean(team);
 
-    modalRef.result.then(
-      () => this.loadTeams(),
-      () => console.log('Modal dismissed')
-    );
+    modalRef.result
+      .then((result) => {
+        // Do something with the result if needed
+        console.log('Modal closed with result:', result);
+        // this.loadTeams(); // Reload teams if you want to reflect changes
+      })
+      .catch((reason) => {
+        // This handles dismiss like onCancel
+        console.log('Modal dismissed:', reason); // No more ERROR cancel
+      });
   }
-  
 }

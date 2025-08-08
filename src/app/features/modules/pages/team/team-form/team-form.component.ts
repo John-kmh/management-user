@@ -21,7 +21,7 @@ export class TeamFormComponent {
 
   // Now you can safely use this.fb
   teamForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    name: ['', [Validators.required]],
     description: ['', [Validators.required]],
   });
 

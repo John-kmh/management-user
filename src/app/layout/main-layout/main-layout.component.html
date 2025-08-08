@@ -1,15 +1,16 @@
-<div class="d-flex min-vh-100">
-  <!-- Sidebar -->
+<div class="d-flex">
+  <!-- Sidebar wrapper with full height -->
+  <!-- <div class="border-end d-flex flex-column">
+  </div> -->
   <app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
+
   <!-- Main Area -->
   <div class="flex-grow-1 d-flex flex-column">
-    <!-- Header -->
     <app-header-bar
-      [title]="'User Management'"
+      class="mb-5"
       (toggleSidebar)="toggleSidebar()"
     ></app-header-bar>
-    <!-- Content -->
-    <main class="p-4 bg-light flex-grow-1">
+    <main class="p-4 flex-grow-1">
       <router-outlet></router-outlet>
     </main>
   </div>

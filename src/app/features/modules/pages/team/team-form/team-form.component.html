@@ -15,6 +15,7 @@
       <input
         type="text"
         class="form-control"
+        placeholder="Enter team name"
         formControlName="name"
         [class.is-invalid]="
           teamForm.get('name')?.invalid && teamForm.get('name')?.touched
@@ -24,8 +25,6 @@
       <div class="invalid-feedback">
         @if (teamForm.get('name')?.errors?.['required']) {
         <div>Name is required</div>
-        } @if (teamForm.get('name')?.errors?.['minlength']) {
-        <div>Minimum 2 characters required</div>
         }
       </div>
       }
@@ -35,6 +34,7 @@
       <label class="form-label">Description</label>
       <textarea
         class="form-control"
+        placeholder="Enter team description"
         formControlName="description"
         rows="3"
         [class.is-invalid]="
@@ -47,8 +47,6 @@
       <div class="invalid-feedback">
         @if (teamForm.get('description')?.errors?.['required']) {
         <div>Description is required</div>
-        } @if (teamForm.get('description')?.errors?.['minlength']) {
-        <div>Minimum 5 characters required</div>
         }
       </div>
       }
@@ -61,7 +59,7 @@
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="teamForm.invalid"
+        
       >
         {{ isEdit ? "Update" : "Create" }}
       </button>

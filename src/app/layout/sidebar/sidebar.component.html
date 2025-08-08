@@ -1,33 +1,9 @@
-<!-- <div [ngClass]="{ collapsed: isCollapsed }" class="bg-dark text-white sidebar">
-  <h4 class="text-center mt-4">Telesales</h4>
-  <ul class="nav flex-column" style="margin-top: 100px">
-    <li class="nav-item">
-      <a
-        class="nav-link text-white"
-        routerLink="/"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Home
-      </a>
-    </li> -->
-<!-- <li class="nav-item">
-      <a class="nav-link text-white" routerLink="/dashboard">Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" routerLink="/profile">Profile</a>
-    </li> -->
-<!-- </ul>
-</div> -->
+<div class="sidebar-backdrop border border-end"></div>
 <div
-  [class.d-none]="isCollapsed"
-  class="bg-white border-end shadow-sm p-3 h-100"
-  style="width: 250px; border-radius: 10px"
+  class="sidebar"
+  [class.collapsed]="isCollapsed"
+  [class.sidebar-open]="!isCollapsed"
 >
-  <div class="mb-4 border-bottom pb-3">
-    <h4 class="fw-bold text-primary">Admin Panel</h4>
-  </div>
-
   <ul class="nav flex-column gap-1">
     <li class="nav-item">
       <a

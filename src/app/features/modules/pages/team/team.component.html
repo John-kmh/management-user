@@ -1,11 +1,11 @@
-<div class="container-fluid bg-white rounded shadow-sm p-4">
+<div class="container-fluid bg-white rounded shadow-sm p-3">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <div>
       <h5 class="mb-1">Teams</h5>
       <small class="text-muted">Manage your teams</small>
     </div>
     <!-- Button trigger modal -->
-    <button class="btn btn-primary" (click)="openModal()">
+    <button class="btn  btn-primary" (click)="openModal()">
       <i class="bi bi-plus-circle me-1"></i>Add Team
     </button>
   </div>
@@ -19,7 +19,10 @@
   </div>
   <div class="table-responsive">
     <div class="card overflow-hidden">
-      <table class="table table-bordered table-hover align-middle mb-0">
+      <!-- <table class="table table-bordered table-hover align-middle mb-0"> -->
+      <table
+        class="table table-bordered table-hover align-middle mb-0 responsive-table"
+      >
         <thead class="table-light">
           <tr>
             <th>Team ID</th>
@@ -31,22 +34,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of teams$ | async">
-            <td>{{ item.team_id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.description }}</td>
-            <td>
-              <div class="dropdown">
-                <button class="btn btn-sm btn-primary" type="button">
-                  Permissions ({{ item.permissions?.length || 0 }})
-                </button>
-              </div>
+            <td data-label="Team ID">{{ item.team_id }}</td>
+            <td data-label="Name">{{ item.name }}</td>
+            <td data-label="Description">{{ item.description }}</td>
+            <td data-label="Permissions">
+              <button type="button" class="btn btn-sm btn-outline-success">
+                Permissions
+                <span class="badge text-bg-success">
+                  ({{ item.permissions?.length || 0 }})
+                </span>
+              </button>
             </td>
-            <td>
+            <td data-label="Actions">
               <button
                 (click)="openModal(item)"
-                class="btn btn-sm btn-outline-primary me-1"
+                class="btn btn-sm btn-outline-primary"
               >
-                <i class="bi bi-pencil"></i>
+                <span class="me-2">Edit</span>
+                <i class="bi bi-pencil-square"></i>
               </button>
             </td>
           </tr>

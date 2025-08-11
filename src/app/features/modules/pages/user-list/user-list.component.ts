@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { selectAllUsers } from './state/user.selectors';
-import { UserActions } from './state/user.actions';
+import { selectAllUsers } from './store/user.selectors';
+import { UserActions } from './store/user.actions';
 import { UserFormComponent } from "./user-form/user-form.component";
 
 @Component({

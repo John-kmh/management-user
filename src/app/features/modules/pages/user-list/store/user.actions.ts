@@ -12,12 +12,12 @@ export const UserActions = createActionGroup({
     'Load User Success': props<{ user: User }>(),
     'Load User Failure': props<{ error: any }>(),
 
-    'Create User': props<{ user: User }>(),
-    'Create User Success': props<{ user: UserItemResponse }>(),
+    'Create User': props<{ user: Omit<User, 'user_id'> }>(),
+    'Create User Success': props<{ user: User }>(),
     'Create User Failure': props<{ error: any }>(),
 
-    'Update User': props<{ id: number; user: User }>(),
-    'Update User Success': props<{ user: UserItemResponse }>(),
+    'Update User': props<{ user: User }>(),
+    'Update User Success': props<{ user: User }>(),
     'Update User Failure': props<{ error: any }>(),
 
     'Delete User': props<{ id: number }>(),

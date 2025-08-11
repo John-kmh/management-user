@@ -6,6 +6,8 @@ export interface User {
   emp_no: string | null;
   roles: string[];
   permissions?: string[];
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface UsersResponse {

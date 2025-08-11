@@ -1,20 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserActions } from './user.actions';
-import { User, UserItemResponse } from '../../../models/user.model';
-
-export interface UserState {
-  users: UserItemResponse[];
-  selectedUser: UserItemResponse  | null;
-  loading: boolean;
-  error: any;
-}
-
-export const initialUserState: UserState = {
-  users: [],
-  selectedUser: null,
-  loading: false,
-  error: null,
-};
+import { initialUserState } from './user.state';
 
 export const userReducer = createReducer(
   initialUserState,
@@ -32,7 +18,7 @@ export const userReducer = createReducer(
     error,
   })),
 
-  // Load One
+  // Load One user
   on(UserActions.loadUser, (state) => ({ ...state, loading: true })),
   on(UserActions.loadUserSuccess, (state, { user }) => ({
     ...state,
@@ -46,11 +32,15 @@ export const userReducer = createReducer(
   })),
 
   // Create
-  on(UserActions.createUser, (state) => ({ ...state, loading: true })),
+  on(UserActions.createUser, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
   on(UserActions.createUserSuccess, (state, { user }) => ({
     ...state,
-    users: [...state.users, user],
     loading: false,
+    users: [...state.users, user],
   })),
   on(UserActions.createUserFailure, (state, { error }) => ({
     ...state,
@@ -59,31 +49,38 @@ export const userReducer = createReducer(
   })),
 
   // Update
-  // on(UserActions.updateUser, (state) => ({ ...state, loading: true })),
-  // on(UserActions.updateUserSuccess, (state, { user }) => ({
-  //   ...state,
-  //   users: state.users.map((u) =>
-  //     u.user.user_id === user.user.user_id ? user : u
-  //   ),
-  //   loading: false,
-  // })),
-  // on(UserActions.updateUserFailure, (state, { error }) => ({
-  //   ...state,
-  //   loading: false,
-  //   error,
-  // })),
+  on(UserActions.updateUser, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(UserActions.updateUserSuccess, (state, { user }) => ({
+    ...state,
+    users: state.users.map((t) => (t.user_id === user.user_id ? user : t)),
+    loading: false,
+  })),
+  on(UserActions.updateUserFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
+  })),
 
   // Delete
   on(UserActions.deleteUser, (state) => ({ ...state, loading: true })),
   on(UserActions.deleteUserSuccess, (state, { id }) => ({
     ...state,
-    users: state.users.filter((u) => u.user.user_id !== id),
+    users: state.users.filter((u) => u.user_id !== id),
     loading: false,
-  })),
-  on(UserActions.deleteUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
   }))
+  // on(UserActions.deleteUser, (state) => ({ ...state, loading: true })),
+  // on(UserActions.deleteUserSuccess, (state, { id }) => ({
+  //   ...state,
+  //   users: state.users.filter((u) => u.user.user_id !== id),
+  //   loading: false,
+  // })),
+  // on(UserActions.deleteUserFailure, (state, { error }) => ({
+  //   ...state,
+  //   loading: false,
+  //   error,
+  // }))
 );
-

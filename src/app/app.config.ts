@@ -22,8 +22,8 @@ import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './features/auth/state/auth.effects';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { userReducer } from './features/modules/pages/user-list/state/user.reducer';
-import { UserEffects } from './features/modules/pages/user-list/state/user.effect';
+import { userReducer } from './features/modules/pages/user-list/store/user.reducer';
+import { UserEffects } from './features/modules/pages/user-list/store/user.effect';
 import { teamReducer } from './features/modules/pages/team/store/team.reducers';
 import { TeamEffects } from './features/modules/pages/team/store/team.effects';
 

@@ -3,6 +3,8 @@ export interface Team {
   name: string;
   description: string;
   permissions?: Permission[];
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Permission {

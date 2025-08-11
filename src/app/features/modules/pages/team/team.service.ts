@@ -23,4 +23,10 @@ export class TeamService {
       .put<TeamItemResponse>(`/v1/teams/${team.team_id}`, team)
       .pipe(map((res) => res.data));
   }
+
+  getTeamById(id: number): Observable<Team> {
+    return this.api
+      .get<TeamItemResponse>(`/v1/teams/${id}`)
+      .pipe(map((res) => res.data));
+  }
 }

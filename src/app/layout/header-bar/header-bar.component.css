@@ -2,7 +2,7 @@
   transition: backdrop-filter 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: none;
   z-index: 1050; /* stay on top of everything */
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
 }
 
 .blur-on-scroll.scrolled {

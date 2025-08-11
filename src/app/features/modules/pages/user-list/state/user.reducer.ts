@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserActions } from './user.actions';
-import { User, UserResponseItem } from '../../../models/user.model';
+import { User, UserItemResponse } from '../../../models/user.model';
 
 export interface UserState {
-  users: UserResponseItem[];
-  selectedUser: UserResponseItem | null;
+  users: UserItemResponse[];
+  selectedUser: UserItemResponse  | null;
   loading: boolean;
   error: any;
 }
@@ -59,19 +59,19 @@ export const userReducer = createReducer(
   })),
 
   // Update
-  on(UserActions.updateUser, (state) => ({ ...state, loading: true })),
-  on(UserActions.updateUserSuccess, (state, { user }) => ({
-    ...state,
-    users: state.users.map((u) =>
-      u.user.user_id === user.user.user_id ? user : u
-    ),
-    loading: false,
-  })),
-  on(UserActions.updateUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  })),
+  // on(UserActions.updateUser, (state) => ({ ...state, loading: true })),
+  // on(UserActions.updateUserSuccess, (state, { user }) => ({
+  //   ...state,
+  //   users: state.users.map((u) =>
+  //     u.user.user_id === user.user.user_id ? user : u
+  //   ),
+  //   loading: false,
+  // })),
+  // on(UserActions.updateUserFailure, (state, { error }) => ({
+  //   ...state,
+  //   loading: false,
+  //   error,
+  // })),
 
   // Delete
   on(UserActions.deleteUser, (state) => ({ ...state, loading: true })),

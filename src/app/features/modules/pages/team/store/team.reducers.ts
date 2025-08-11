@@ -4,7 +4,7 @@ import * as TeamActions from './team.actions';
 
 export const teamReducer = createReducer(
   initialTeamState,
-  // Load
+  // Load All
   on(TeamActions.loadTeams, (state) => ({
     ...state,
     loading: true,
@@ -52,5 +52,21 @@ export const teamReducer = createReducer(
     ...state,
     error,
     loading: false,
+  })),
+
+  // Load team
+  on(TeamActions.loadTeam, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(TeamActions.loadTeamSuccess, (state, { team }) => ({
+    ...state,
+    selectedTeam: team,
+    loading: false,
+  })),
+  on(TeamActions.loadTeamFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );

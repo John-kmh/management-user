@@ -11,6 +11,7 @@ import {
   selectTeamError,
   selectTeamLoading,
 } from './store/team.selectors';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 @Component({
   selector: 'app-team',
@@ -57,5 +58,13 @@ export class TeamComponent implements OnInit {
         // This handles dismiss like onCancel
         console.log('Modal dismissed:', reason); // No more ERROR cancel
       });
+  }
+
+  openDetailModal(team: Team): void {
+    const modalRef = this.modalService.open(TeamDetailComponent, {
+      size: 'md',
+      centered: true,
+    });
+    modalRef.componentInstance.team = team;
   }
 }

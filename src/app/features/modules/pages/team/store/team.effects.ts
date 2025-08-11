@@ -8,11 +8,10 @@ import { TeamService } from '../team.service';
 export class TeamEffects {
   private actions$ = inject(Actions);
   private teamService = inject(TeamService);
-  
+
   loadTeams$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TeamActions.loadTeams),
-      // tap(() => console.log('[Effect] loadTeams triggered')),
       switchMap(() =>
         this.teamService.getTeams().pipe(
           map((res) => TeamActions.loadTeamsSuccess({ teams: res.data })),
@@ -50,6 +49,18 @@ export class TeamEffects {
           catchError((error) =>
             of(TeamActions.updateTeamFailure({ error: error.message }))
           )
+        )
+      )
+    )
+  );
+
+  loadTeam$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TeamActions.loadTeam),
+      mergeMap(({ id }) =>
+        this.teamService.getTeamById(id).pipe(
+          map((team) => TeamActions.loadTeamSuccess({ team })),
+          catchError((error) => of(TeamActions.loadTeamFailure({ error })))
         )
       )
     )

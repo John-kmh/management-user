@@ -3,3 +3,9 @@
   min-height: 100vh;
   position: relative;
 } */
+
+@media (min-width: 768px) {
+  .main-content {
+    margin-left: 250px;
+  }
+}

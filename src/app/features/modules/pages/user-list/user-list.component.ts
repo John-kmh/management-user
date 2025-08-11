@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { UserResponseItem } from '../../models/user.model';
-import { UserService } from './user.service';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { selectAllUsers } from './state/user.selectors';

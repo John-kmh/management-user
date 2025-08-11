@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Team } from '../../../models/team.model';
 
+// Load Teams
 export const loadTeams = createAction('[Team] Load Teams');
 export const loadTeamsSuccess = createAction(
   '[Team] Load Teams Success',
@@ -37,4 +38,18 @@ export const updateTeamSuccess = createAction(
 export const updateTeamFailure = createAction(
   '[Teams] Update Team Failure',
   props<{ error: string }>()
+);
+
+// Load Team
+export const loadTeam = createAction(
+  '[Team] Load Team ',
+  props<{ id: number }>()
+);
+export const loadTeamSuccess = createAction(
+  '[Team] Load Team  Success',
+  props<{ team: Team }>()
+);
+export const loadTeamFailure = createAction(
+  '[Team] Load Team  Failure',
+  props<{ error: any }>()
 );

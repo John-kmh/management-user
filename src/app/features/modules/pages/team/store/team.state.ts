@@ -1,7 +1,8 @@
-import { Team } from "../../../models/team.model";
+import { Team } from '../../../models/team.model';
 
 export interface TeamState {
   teams: Team[];
+  team: Team;
   loading: boolean;
   error: any;
 }
@@ -9,5 +10,13 @@ export interface TeamState {
 export const initialTeamState: TeamState = {
   teams: [],
   loading: false,
-  error: null
+  error: null,
+  team: {
+    team_id: 0,
+    name: '',
+    description: '',
+    permissions: [],
+    created_at: '',
+    updated_at: '',
+  },
 };

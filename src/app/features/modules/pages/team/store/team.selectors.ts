@@ -8,6 +8,11 @@ export const selectAllTeams = createSelector(
   (state) => state.teams
 );
 
+export const selectSelectedTeam = createSelector(
+  selectTeamState,
+  (state) => state.team
+);
+
 export const selectTeamLoading = createSelector(
   selectTeamState,
   (state) => state.loading

@@ -1,0 +1,50 @@
+<!-- team-detail.component.html -->
+<div class="modal-header">
+  <h5 class="modal-title">Team Details</h5>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.dismiss()"
+    aria-label="Close"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title">{{ team.name }}</h5>
+      <p class="card-text">{{ team.description }}</p>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <strong>Team ID: </strong> {{ team.team_id }}
+        </li>
+        <li class="list-group-item">
+          <strong>Permissions: </strong>
+          <span *ngIf="team.permissions?.length; else noPerms">
+            <ul class="mb-0">
+              <li *ngFor="let perm of team.permissions">{{ perm.name }}</li>
+            </ul>
+          </span>
+          <ng-template #noPerms>None</ng-template>
+        </li>
+        <li class="list-group-item">
+          <strong>Created At: </strong> {{ team.created_at | date : "short" }}
+        </li>
+        <li class="list-group-item">
+          <strong>Updated At: </strong> {{ team.updated_at | date : "short" }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="activeModal.dismiss()"
+  >
+    Close
+  </button>
+</div>

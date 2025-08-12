@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">Team Details</h5>
+  <h5 class="modal-title">User Details</h5>
   <button
     type="button"
     class="btn-close"
@@ -11,27 +11,36 @@
 <div class="modal-body">
   <div class="card shadow-sm border-0">
     <div class="card-body">
-      <h5 class="card-title">{{ team.name }}</h5>
-      <p class="card-text">{{ team.description }}</p>
+      <h5 class="card-title">{{ user.username }}</h5>
+      <p class="card-text">{{ user.user_full_name }}</p>
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <strong>Team ID: </strong> {{ team.team_id }}
+          <strong>User ID: </strong> {{ user.user_id }}
         </li>
         <li class="list-group-item">
           <strong>Permissions: </strong>
-          <span *ngIf="team.permissions?.length; else noPerms">
+          <span *ngIf="user.permissions?.length; else noPerms">
             <ul class="mb-0">
-              <li *ngFor="let perm of team.permissions">{{ perm.name }}</li>
+              <li *ngFor="let perm of user.permissions">{{ perm }}</li>
             </ul>
           </span>
           <ng-template #noPerms>None</ng-template>
         </li>
         <li class="list-group-item">
-          <strong>Created At: </strong> {{ team.created_at | date : "short" }}
+          <strong>Roles: </strong>
+          <span *ngIf="user.roles?.length; else noRoles">
+            <ul class="mb-0">
+              <li *ngFor="let role of user.roles">{{ role }}</li>
+            </ul>
+          </span>
+          <ng-template #noRoles>None</ng-template>
         </li>
         <li class="list-group-item">
-          <strong>Updated At: </strong> {{ team.updated_at | date : "short" }}
+          <strong>Email: </strong> {{ user.email }}
+        </li>
+        <li class="list-group-item">
+          <strong>Emp_no: </strong> {{ user.emp_no }}
         </li>
       </ul>
     </div>

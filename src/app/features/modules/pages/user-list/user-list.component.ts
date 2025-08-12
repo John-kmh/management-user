@@ -2,10 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { selectAllUsers } from './store/user.selectors';
+import {
+  selectAllUsers,
+  selectUsersError,
+  selectUsersLoading,
+} from './store/user.selectors';
 import { deleteUser, loadUsers } from './store/user.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @Component({
   selector: 'app-user-list',
@@ -13,11 +19,13 @@ import { User } from '../../models/user.model';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
   private store = inject(Store);
-  private router = inject(Router);
+  private modalService = inject(NgbModal);
 
   users$: Observable<User[]> = this.store.select(selectAllUsers);
+  loading$ = this.store.select(selectUsersLoading);
+  error$ = this.store.select(selectUsersError);
 
   ngOnInit(): void {
     this.loadUsers();
@@ -26,18 +34,12 @@ export class UserListComponent implements OnInit {
   loadUsers() {
     this.store.dispatch(loadUsers());
   }
-  create() {
-    console.log('Create user');
-    this.router.navigate(['/user/create']);
-  }
 
-  edit(id: number) {
-    this.router.navigate(['/users/edit', id]);
-  }
-
-  remove(id: number) {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.store.dispatch(deleteUser({ id }));
-    }
+  openDetailModal(user: User): void {
+    const modalRef = this.modalService.open(UserDetailComponent, {
+      size: 'md',
+      centered: true,
+    });
+    modalRef.componentInstance.user = user;
   }
 }

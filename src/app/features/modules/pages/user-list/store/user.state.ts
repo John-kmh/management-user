@@ -1,15 +1,15 @@
-import { FlatUser } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 
 export interface UserState {
-  users: FlatUser[];
-  user: FlatUser | null;
+  users: User[];
+  selectedUser: User | null;
   loading: boolean;
   error: any;
 }
 
-export const initialUserState: UserState = {
+export const initialState: UserState = {
   users: [],
-  user: null,
+  selectedUser: null,
   loading: false,
   error: null,
 };

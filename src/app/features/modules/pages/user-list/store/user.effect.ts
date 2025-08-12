@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../user.service';
 import * as UserActions from './user.actions';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
+import { UserService } from '../user.service';
 
 @Injectable()
 export class UserEffects {
@@ -14,23 +14,27 @@ export class UserEffects {
       ofType(UserActions.loadUsers),
       mergeMap(() =>
         this.userService.getUsers().pipe(
-          map((res) =>
-            UserActions.loadUsersSuccess({
-              users: res.data.map((item) => ({
-                ...item.user,
-                roles: item.roles,
-                permissions: item.permissions || [],
-              })),
-            })
-          ),
+          map((users) => UserActions.loadUsersSuccess({ users })),
           catchError((error) => of(UserActions.loadUsersFailure({ error })))
         )
       )
     )
   );
 
- createUser$ = createEffect(() => {
-    return this.actions$.pipe(
+  loadUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.loadUser),
+      mergeMap(({ id }) =>
+        this.userService.getUserById(id).pipe(
+          map((user) => UserActions.loadUserSuccess({ user })),
+          catchError((error) => of(UserActions.loadUserFailure({ error })))
+        )
+      )
+    )
+  );
+
+  createUser$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(UserActions.createUser),
       mergeMap(({ user }) =>
         this.userService.createUser(user).pipe(
@@ -38,27 +42,23 @@ export class UserEffects {
           catchError((error) => of(UserActions.createUserFailure({ error })))
         )
       )
-    );
-  });
+    )
+  );
 
-  updateUser$ = createEffect(() => {
-    return this.actions$.pipe(
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(UserActions.updateUser),
       mergeMap(({ user }) =>
         this.userService.updateUser(user).pipe(
-          map((updatedUser) =>
-            UserActions.updateUserSuccess({ user: updatedUser })
-          ),
-          catchError((error) =>
-            of(UserActions.updateUserFailure({ error: error.message }))
-          )
+          map((updated) => UserActions.updateUserSuccess({ user: updated })),
+          catchError((error) => of(UserActions.updateUserFailure({ error })))
         )
       )
-    );
-  });
+    )
+  );
 
-  deleteUser$ = createEffect(() => {
-    return this.actions$.pipe(
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(UserActions.deleteUser),
       mergeMap(({ id }) =>
         this.userService.deleteUser(id).pipe(
@@ -66,21 +66,6 @@ export class UserEffects {
           catchError((error) => of(UserActions.deleteUserFailure({ error })))
         )
       )
-    );
-  });
+    )
+  );
 }
-
-// export const updateUser$ = createEffect(() => {
-//   const actions$ = inject(Actions);
-//   const service = inject(UserService);
-
-//   return actions$.pipe(
-//     ofType(UserActions.updateUser),
-//     mergeMap(({ id, user }) =>
-//       service.updateUser(id, user).pipe(
-//         map(() => UserActions.updateUserSuccess({ user })),
-//         catchError((error) => of(UserActions.updateUserFailure({ error })))
-//       )
-//     )
-//   );
-// });

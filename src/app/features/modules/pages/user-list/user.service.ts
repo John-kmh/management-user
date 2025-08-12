@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ApiService } from '../../../../core/services/api.service';
-import { User, UsersResponse } from '../../models/user.model';
+import { User, UserItemResponse, UsersResponse } from '../../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -15,12 +15,16 @@ export class UserService {
     return this.api.get<any>(`/v1/users/${id}`).pipe(map((res) => res.user));
   }
 
-  createUser(user: User): Observable<any> {
-    return this.api.post('/v1/users', user);
+  createUser(user: Omit<User, 'user_id'>): Observable<User> {
+    return this.api
+      .post<UserItemResponse>('/v1/users', user)
+      .pipe(map((res) => res.data));
   }
 
-  updateUser(id: number, user: User): Observable<any> {
-    return this.api.put(`/v1/users/${id}`, user);
+  updateUser(user: User): Observable<User> {
+    return this.api
+      .put<UserItemResponse>(`/v1/teams/${user.user_id}`, user)
+      .pipe(map((res) => res.data));
   }
 
   deleteUser(id: number): Observable<any> {

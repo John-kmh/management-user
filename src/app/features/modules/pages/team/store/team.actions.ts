@@ -12,6 +12,21 @@ export const loadTeamsFailure = createAction(
   props<{ error: any }>()
 );
 
+// Load One Team
+export const loadTeam = createAction(
+  '[Team] Load Team ',
+  props<{ id: number }>()
+);
+export const loadTeamSuccess = createAction(
+  '[Team] Load Team  Success',
+  props<{ team: Team }>()
+);
+export const loadTeamFailure = createAction(
+  '[Team] Load Team  Failure',
+  props<{ error: any }>()
+);
+
+
 // Create Team
 export const createTeam = createAction(
   '[Team] Create Team',
@@ -38,18 +53,4 @@ export const updateTeamSuccess = createAction(
 export const updateTeamFailure = createAction(
   '[Teams] Update Team Failure',
   props<{ error: string }>()
-);
-
-// Load Team
-export const loadTeam = createAction(
-  '[Team] Load Team ',
-  props<{ id: number }>()
-);
-export const loadTeamSuccess = createAction(
-  '[Team] Load Team  Success',
-  props<{ team: Team }>()
-);
-export const loadTeamFailure = createAction(
-  '[Team] Load Team  Failure',
-  props<{ error: any }>()
 );

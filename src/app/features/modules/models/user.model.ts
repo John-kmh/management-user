@@ -4,19 +4,26 @@ export interface User {
   email: string;
   user_full_name: string;
   emp_no: string | null;
+}
+
+export interface UserApiResponse {
+  user: User;
   roles: string[];
   permissions?: string[];
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface UsersResponse {
   status: number;
-  data: User[];
+  data: UserApiResponse[];
   message: string;
 }
 export interface UserItemResponse {
   status: number;
-  data: User;
+  data: UserApiResponse;
   message: string;
+}
+
+export interface FlatUser extends User {
+  roles: string[];
+  permissions?: string[];
 }

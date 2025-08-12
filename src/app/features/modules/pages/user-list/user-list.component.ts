@@ -3,25 +3,29 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { selectAllUsers } from './store/user.selectors';
-import { UserActions } from './store/user.actions';
-import { UserFormComponent } from "./user-form/user-form.component";
+import { deleteUser, loadUsers } from './store/user.actions';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-list',
-  imports: [CommonModule, UserFormComponent],
+  imports: [CommonModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
 export class UserListComponent implements OnInit {
-   private store = inject(Store);
+  private store = inject(Store);
   private router = inject(Router);
 
-  users$ = this.store.select(selectAllUsers);
+  users$: Observable<User[]> = this.store.select(selectAllUsers);
 
   ngOnInit(): void {
-    this.store.dispatch(UserActions.loadUsers());
+    this.loadUsers();
   }
 
+  loadUsers() {
+    this.store.dispatch(loadUsers());
+  }
   create() {
     console.log('Create user');
     this.router.navigate(['/user/create']);
@@ -33,7 +37,7 @@ export class UserListComponent implements OnInit {
 
   remove(id: number) {
     if (confirm('Are you sure you want to delete this user?')) {
-      this.store.dispatch(UserActions.deleteUser({ id }));
+      this.store.dispatch(deleteUser({ id }));
     }
   }
 }

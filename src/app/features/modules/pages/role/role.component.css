@@ -1,0 +1,102 @@
+/* Mobile-friendly team table */
+@media (max-width: 768px) {
+  .responsive-table tbody,
+  .responsive-table tr,
+  .responsive-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive-table td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #6c757d;
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table td:last-child {
+    border-bottom: 2px solid #dee2e6;
+  }
+}
+
+
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* small gap on mobile */
+  z-index: 1050;
+}
+
+/* Modal Content - Responsive */
+.modal-content {
+  width: 100%;
+  max-width: 800px; /* Desktop max width */
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  max-height: 90vh; /* allows scrolling if content is long */
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  padding: 1rem;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 576px) {
+  .modal-content {
+    max-width: 100%; /* Full width on small screens */
+    border-radius: 0.5rem;
+    max-height: 95vh;
+  }
+}
+
+/* Permission List Scroll */
+.permission-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.permission-list div {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+/* Adjust modal buttons on mobile */
+.modal-content .btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+@media(min-width: 576px) {
+  .modal-content .btn {
+    width: auto;
+    margin-bottom: 0;
+  }
+}

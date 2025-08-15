@@ -1,3 +1,4 @@
+
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -26,6 +27,10 @@ import { userReducer } from './features/modules/pages/user-list/store/user.reduc
 import { UserEffects } from './features/modules/pages/user-list/store/user.effect';
 import { teamReducer } from './features/modules/pages/team/store/team.reducers';
 import { TeamEffects } from './features/modules/pages/team/store/team.effects';
+import { permissionsReducer } from './features/modules/pages/permission/store/permission.reducer';
+import { PermissionsEffects } from './features/modules/pages/permission/store/permission.effects';
+import { roleReducer } from './features/modules/pages/role/store/role.reducer';
+import { RoleEffects } from './features/modules/pages/role/store/role.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -54,8 +59,10 @@ export const appConfig: ApplicationConfig = {
       auth: authReducer,
       users: userReducer,
       teams: teamReducer,
+      permissions: permissionsReducer,
+      roles: roleReducer
     }),
-    provideEffects([AuthEffects, UserEffects, TeamEffects]),
+    provideEffects([AuthEffects, UserEffects, TeamEffects, PermissionsEffects, RoleEffects]),
 
     // toastr
     // importProvidersFrom(

@@ -1,0 +1,33 @@
+/* Mobile-friendly team table */
+@media (max-width: 768px) {
+  .responsive-table tbody,
+  .responsive-table tr,
+  .responsive-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive-table td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #6c757d;
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table td:last-child {
+    border-bottom: 2px solid #dee2e6;
+  }
+}
+

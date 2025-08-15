@@ -1,1 +1,52 @@
-<p>permission works!</p>
+<div class="container-fluid bg-white rounded shadow-sm p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h5 class="mb-1">Permissions</h5>
+      <small class="text-muted">Manage permissions</small>
+    </div>
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary" (click)="openModal()">
+      <i class="bi bi-plus-circle me-1"></i>Add Permission
+    </button>
+  </div>
+  <div class="mb-3">
+    <input
+      type="text"
+      name="search"
+      class="form-control"
+      placeholder="Search teams..."
+    />
+  </div>
+  <div class="table-responsive">
+    <div class="card overflow-hidden">
+      <table
+        class="table table-bordered table-hover align-middle mb-0 responsive-table"
+      >
+        <thead class="table-light">
+          <tr>
+            <th>Permission ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of permissions$ | async">
+            <td data-label="Permission ID">{{ item.id }}</td>
+            <td data-label="Name">{{ item.name }}</td>
+
+            <td data-label="Actions" class="d-flex flex-column flex-md-row  gap-2">
+              <button
+                (click)="openModal(item)"
+                class="btn btn-sm btn-outline-primary"
+              >
+                <span class="me-2">Edit</span>
+                <i class="bi bi-pencil-square"></i>
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
